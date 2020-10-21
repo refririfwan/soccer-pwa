@@ -1,0 +1,11 @@
+{
+  "name": "soccer-pwa",
+  "version": "0.0.1",
+  "description": "Aplikasi berbasis Progressive Web Application (PWA) yang berisi sebagai media informasi sepakbola dari beberapa liga yang terkenal di eropa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "refririfwan@student.ub.ac.id",
+  "license": "MIT"
+}
