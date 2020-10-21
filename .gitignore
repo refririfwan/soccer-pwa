@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+#Install dev-tools
+dev-script.sh
+
+#gitignored
+.gitignore
