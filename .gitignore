@@ -105,6 +105,3 @@ dist
 
 #Install dev-tools
 dev-script.sh
-
-#gitignored
-.gitignore
