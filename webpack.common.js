@@ -31,9 +31,25 @@ module.exports = {
             template: "./src/index.html",
             filename: "index.html"
         }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/navbar.html",
+            filename: "./pages/navbar.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/standings.html",
+            filename: "./pages/standings.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/matches.html",
+            filename: "./pages/matches.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/teams.html",
+            filename: "./pages/teams.html"
+        }),
         new CopyPlugin({
             patterns: [
-                { from: './src/assets', to: './assets' }
+                { from: './src/img', to: './img' }
             ],
         }),
     ]
