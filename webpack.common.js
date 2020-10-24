@@ -47,6 +47,10 @@ module.exports = {
             template: "./src/pages/teams.html",
             filename: "./pages/teams.html"
         }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/upcoming.html",
+            filename: "./pages/upcoming.html"
+        }),
         new CopyPlugin({
             patterns: [
                 { from: './src/img', to: './img' }

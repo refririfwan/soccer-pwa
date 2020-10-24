@@ -11,7 +11,7 @@ class Teams extends API {
             caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        console.log("Data Teams: " + data);
+                        // console.log("Data Teams: " + data);
                         this.showTeams(data)
                     })
                 }

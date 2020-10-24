@@ -1,53 +1,57 @@
 import API from "./api"
 
-class Matches extends API {
+class Upcoming extends API {
     constructor() {
         super()
         this.ENDPOINT_STANDINGS = `${this.BASE_URL}competitions/${this.LEAGUE}/matches`;
     }
 
-    getAllMatches() {
+    getAllUpcoming() {
         if ("caches" in window) {
             caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        // console.log("Data Matches: " + data);
-                        this.showMatches(data)
+                        console.log("Data Upcoming: " + data);
+                        this.showUpcoming(data)
                     })
                 }
             })
         }
         this.fetchAPI(this.ENDPOINT_STANDINGS)
             .then(data => {
-                document.querySelector('#matches').style.display = "none";
+                document.querySelector('#upcoming').style.display = "none";
                 document.querySelector('.load1').classList.add('progress');
                 document.querySelector('.load2').classList.add('indeterminate');
                 setTimeout(function () {
                     document.querySelector('.load1').classList.remove('progress');
                     document.querySelector('.load2').classList.remove('indeterminate');
-                    document.querySelector('#matches').style.display = "block";
+                    document.querySelector('#upcoming').style.display = "block";
                     document.querySelector('.loader').style.display = "none";
                 }, 1234)
-                this.showMatches(data)
+                this.showUpcoming(data)
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
-    showMatches(data) {
+    showUpcoming(data) {
         let matches = "";
-        let teamElement = document.getElementById("matches");
+        let teamElement = document.getElementById("upcoming");
 
         data.matches.forEach(function (match) {
-            if (match.status === "FINISHED") {
+            if (match.status === "SCHEDULED") {
+                let utcDate = match.utcDate
+                let date = utcDate.slice(0,10)
+                let time = utcDate.slice(11,19)
                 matches += `
                 <tr>
                     <td>${match.matchday}</td>
                     <td>${match.homeTeam.name}</td>
                     <td>${match.awayTeam.name}</td>
                     <td>${match.status}</td>
-                    <td> ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam} </td>
+                    <td>${date}</td>
+                    <td>${time}</td>
                 </tr>
         `;
             }
@@ -63,10 +67,11 @@ class Matches extends API {
                                 <th>Home Team</th>
                                 <th>Away Team</th>
                                 <th>Status</th>
-                                <th>Score</th>
+                                <th>Date</th>
+                                <th>Time (UTC)</th>
                             </tr>
                         </thead>
-                        <tbody id="match">
+                        <tbody id="upcoming">
                             ${matches}
                         </tbody>
                     </table>
@@ -76,4 +81,4 @@ class Matches extends API {
     }
 }
 
-export default Matches
+export default Upcoming
