@@ -1,8 +1,14 @@
 import "./component/app-bar"
 import "./component/app-content"
+import "./component/app-footer"
 import Standings from "./data/standings"
+import Teams from "./data/teams"
+import Matches from "./data/matches"
+
 const app = function () {
     const standings = new Standings()
+    const teams = new Teams()
+    const match = new Matches()
     const elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems);
     loadNav();
@@ -50,6 +56,12 @@ const app = function () {
                     content.innerHTML = xhttp.responseText;
                     if(page === "standings") {
                         standings.getAllStandings()
+                    } else if(page === "teams") {
+                        teams.getAllTeams()
+                    } else if (page === "matches"){
+                        match.getAllMatches()
+                    } else {
+                        content.innerHTML = "<p>Ups.. halaman tidak ada.</p>";
                     }
                 } else if (this.status === 404) {
                     content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
