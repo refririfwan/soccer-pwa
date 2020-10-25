@@ -64,13 +64,17 @@ const app = function () {
                         match.getAllMatches() 
                     } else if (page === "upcoming") {
                         upcoming.getAllUpcoming()
+                    } else if (page === "favorite") {
+                        
+                    } else if (page === "reminder") {
+                        
                     } else {
-                        content.innerHTML = "<p>Ups.. halaman tidak ada.</p>";
+                        content.innerHTML = `<h3 class="center red-text" style="margin-top: 9%; margin-bottom: 90%";> Ups... halaman tidak ada.</h3>`;
                     }
                 } else if (this.status === 404) {
-                    content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
+                    content.innerHTML = `<h3 class="center red-text" style="margin-top: 9%; margin-bottom: 90%";> Halaman tidak ditemukan. </h3>`;
                 } else {
-                    content.innerHTML = "<p>Ups.. halaman tidak dapat diakses.</p>";
+                    content.innerHTML = `<h3 class="center red-text" style="margin-top: 9%; margin-bottom: 90%";> Ups... halaman tidak dapat diakses. </h3>`;
                 }
             }
         };

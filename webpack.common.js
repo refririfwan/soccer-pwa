@@ -51,6 +51,14 @@ module.exports = {
             template: "./src/pages/upcoming.html",
             filename: "./pages/upcoming.html"
         }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/favorite.html",
+            filename: "./pages/favorite.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/reminder.html",
+            filename: "./pages/reminder.html"
+        }),
         new CopyPlugin({
             patterns: [
                 { from: './src/img', to: './img' }
