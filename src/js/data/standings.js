@@ -43,7 +43,7 @@ class Standings extends API {
         data.standings[0].table.forEach(function (standing) {
             standings += `
                 <tr>
-                    <td><img src="${standing.team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="badge"/></td>
+                    <td class="center"><img src="${standing.team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="badge"/></td>
                     <td>${standing.team.name}</td>
                     <td>${standing.won}</td>
                     <td>${standing.draw}</td>
@@ -57,27 +57,27 @@ class Standings extends API {
         });
 
         standingElement.innerHTML = `
-                    <div class="card" style="padding-left: 24px; padding-right: 24px; margin-top: 30px;">
-    
-                    <table class="striped responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Badge</th>
-                                <th>Team Name</th>
-                                <th>W</th>
-                                <th>D</th>
-                                <th>L</th>
-                                <th>GF</th>
-                                <th>GA</th>
-                                <th>GD</th>
-                                <th>P</th>
-                            </tr>
-                        </thead>
-                        <tbody id="standing">
-                            ${standings}
-                        </tbody>
-                    </table>
-                    </div>
+            <div class="card">
+
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th class="center">Badge</th>
+                        <th>Team Name</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GF</th>
+                        <th>GA</th>
+                        <th>GD</th>
+                        <th>P</th>
+                    </tr>
+                </thead>
+                <tbody id="standing">
+                    ${standings}
+                </tbody>
+            </table>
+            </div>
         `;
     }
 }

@@ -42,36 +42,36 @@ class Matches extends API {
         data.matches.forEach(function (match) {
             if (match.status === "FINISHED") {
                 matches += `
-                <tr>
-                    <td>${match.matchday}</td>
-                    <td>${match.homeTeam.name}</td>
-                    <td>${match.awayTeam.name}</td>
-                    <td>${match.status}</td>
-                    <td> ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam} </td>
-                </tr>
-        `;
+                    <tr>
+                        <td class="center">${match.matchday}</td>
+                        <td>${match.homeTeam.name}</td>
+                        <td>${match.awayTeam.name}</td>
+                        <td class="center">${match.status}</td>
+                        <td class="center"> ${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam} </td>
+                    </tr>
+                `;
             }
         });
 
         teamElement.innerHTML = `
-                    <div class="card" style="padding-left: 24px; padding-right: 24px; margin-top: 30px;">
-    
-                    <table class="striped responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Matchday</th>
-                                <th>Home Team</th>
-                                <th>Away Team</th>
-                                <th>Status</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody id="match">
-                            ${matches}
-                        </tbody>
-                    </table>
-                    
-                    </div>
+            <div class="card">
+
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th class="center">Matchday</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th class="center">Status</th>
+                        <th class="center">Score</th>
+                    </tr>
+                </thead>
+                <tbody id="match">
+                    ${matches}
+                </tbody>
+            </table>
+            
+            </div>
         `;
     }
 }

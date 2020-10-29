@@ -41,35 +41,37 @@ class Teams extends API {
     
         data.teams.forEach(function (team) {
             teams += `
-                    <tr>
-                    <td><img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="badge"/></td>
-                        <td>${team.name}</td>
-                        <td>${team.venue}</td>
-                        <td>${team.founded}</td>
-                        <td><a href="${team.website}"class="waves-effect green btn-small" target="_blank">${team.shortName}</a></td>
-                    </tr>
+                <tr>
+                    <td class="center"><a class="waves-effect green btn-small">Add</a></td>
+                    <td class="center"><img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="badge"/></td>
+                    <td>${team.name}</td>
+                    <td>${team.venue}</td>
+                    <td class="center">${team.founded}</td>
+                    <td class="center"><a href="${team.website}"  target="_blank">${team.shortName}</a></td>
+                </tr>
             `;
         });
     
         teamElement.innerHTML = `
-                    <div class="card" style="padding-left: 24px; padding-right: 24px; margin-top: 30px;">
-    
-                    <table class="striped responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Badges</th>
-                                <th>Team Name</th>
-                                <th>Venue</th>
-                                <th>Founded</th>
-                                <th>Website</th>
-                            </tr>
-                        </thead>
-                        <tbody id="team">
-                            ${teams}
-                        </tbody>
-                    </table>
-                    
-                    </div>
+            <div class="card">
+
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th class="center">Favorite</th>
+                        <th class="center">Badges</th>
+                        <th>Team Name</th>
+                        <th>Venue</th>
+                        <th class="center">Founded</th>
+                        <th class="center">Website</th>
+                    </tr>
+                </thead>
+                <tbody id="team">
+                    ${teams}
+                </tbody>
+            </table>
+            
+            </div>
         `;
     }
 

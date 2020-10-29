@@ -43,40 +43,42 @@ class Upcoming extends API {
             if (match.status === "SCHEDULED") {
                 let utcDate = match.utcDate
                 let date = utcDate.slice(0,10)
-                let time = utcDate.slice(11,19)
+                let time = utcDate.slice(11,16)
                 matches += `
-                <tr>
-                    <td>${match.matchday}</td>
-                    <td>${match.homeTeam.name}</td>
-                    <td>${match.awayTeam.name}</td>
-                    <td>${match.status}</td>
-                    <td>${date}</td>
-                    <td>${time}</td>
-                </tr>
-        `;
+                    <tr>
+                        <td class="center">${match.matchday}</td>
+                        <td>${match.homeTeam.name}</td>
+                        <td>${match.awayTeam.name}</td>
+                        <td class="center">${match.status}</td>
+                        <td class="center">${date}</td>
+                        <td class="center">${time}</td>
+                        <td class="center"><a class="waves-effect green btn-small">Add</a></td>
+                    </tr>
+                `;
             }
         });
 
         teamElement.innerHTML = `
-                    <div class="card" style="padding-left: 24px; padding-right: 24px; margin-top: 30px;">
-    
-                    <table class="striped responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Matchday</th>
-                                <th>Home Team</th>
-                                <th>Away Team</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Time (UTC)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="upcoming">
-                            ${matches}
-                        </tbody>
-                    </table>
-                    
-                    </div>
+            <div class="card">
+
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th class="center">Matchday</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th class="center">Status</th>
+                        <th class="center">Date</th>
+                        <th class="center">Time</th>
+                        <th class="center">Reminder</th>
+                    </tr>
+                </thead>
+                <tbody id="upcoming">
+                    ${matches}
+                </tbody>
+            </table>
+            
+            </div>
         `;
     }
 }
