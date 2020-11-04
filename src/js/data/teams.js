@@ -42,7 +42,7 @@ class Teams extends API {
         data.teams.forEach(function (team) {
             teams += `
                 <tr>
-                    <td class="center"><a class="waves-effect green btn-small">Add</a></td>
+                    <td class="center"><a href="./detailTeam.html?teamId=${team.id}" class="waves-effect green btn-small">Detail</a></td>
                     <td class="center"><img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" width="30px" alt="badge"/></td>
                     <td>${team.name}</td>
                     <td>${team.venue}</td>
@@ -58,7 +58,7 @@ class Teams extends API {
             <table class="striped responsive-table">
                 <thead>
                     <tr>
-                        <th class="center">Favorite</th>
+                        <th class="center">Detail</th>
                         <th class="center">Badges</th>
                         <th>Team Name</th>
                         <th>Venue</th>

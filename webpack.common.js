@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "soccer-v0.0.2"),
+        path: path.resolve(__dirname, "soccer-v0.0.7"),
         filename: "index.js"
     },
     module: {
@@ -58,6 +58,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/pages/reminder.html",
             filename: "./pages/reminder.html"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/detailTeam.html",
+            filename: "detailTeam.html"
         }),
         new CopyPlugin({
             patterns: [

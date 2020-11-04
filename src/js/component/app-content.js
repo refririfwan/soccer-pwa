@@ -1,4 +1,4 @@
-class Content extends HTMLElement {
+class AppContent extends HTMLElement {
     connectedCallback(){
         this.render();
     }
@@ -10,4 +10,4 @@ class Content extends HTMLElement {
     }
 }
 
-customElements.define("app-content", Content);
+customElements.define("app-content", AppContent);
