@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, "soccer-v0.0.7"),
+        path: path.resolve(__dirname, "soccer-v0.0.8"),
         filename: "index.js"
     },
     module: {

@@ -62,7 +62,7 @@ class Teams extends API {
                         <th class="center">Badges</th>
                         <th>Team Name</th>
                         <th>Venue</th>
-                        <th class="center">Founded</th>
+                        <th class="center">Since</th>
                         <th class="center">Website</th>
                     </tr>
                 </thead>

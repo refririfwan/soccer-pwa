@@ -8,6 +8,7 @@ import Teams from "./data/teams"
 import Matches from "./data/matches"
 import Upcoming from "./data/upcoming"
 import Team from "./data/team"
+import Favorite from "./data/favorite"
 
 const app = function () {
     const standings = new Standings()
@@ -15,6 +16,7 @@ const app = function () {
     const match = new Matches()
     const upcoming = new Upcoming()
     const team = new Team()
+    const favorite = new Favorite()
     const elems = document.querySelectorAll(".sidenav-appbar");
     M.Sidenav.init(elems);
     loadNav();
@@ -72,7 +74,13 @@ const app = function () {
                         } else if (page === "upcoming") {
                             upcoming.getAllUpcoming()
                         } else if (page === "favorite") {
-                            
+                            favorite.getAllTeams();
+                            document.addEventListener('click', async e => {
+                                if(e.target.classList.contains('btnDelete')){
+                                    const teamid = e.target.dataset.teamid
+                                    await favorite.removeFavorite(teamid)
+                                }
+                            })
                         } else if (page === "reminder") {
                             
                         } else {
@@ -82,6 +90,12 @@ const app = function () {
                         document.querySelector('.load1').classList.add('progress');
                         document.querySelector('.load2').classList.add('indeterminate');
                         team.getTeamDetail(teamId);
+                        document.addEventListener('click', async e => {
+                            if(e.target.classList.contains('btnSave')){
+                                const data = await team.getTeam(teamId);
+                                favorite.saveFavorite(data);
+                            }
+                        })
                     }
                 } else if (this.status === 404) {
                     content.innerHTML = `<h3 class="center red-text" style="margin-top: 9%; margin-bottom: 90%";> Halaman tidak ditemukan. </h3>`;
