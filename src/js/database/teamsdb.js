@@ -2,7 +2,7 @@ import idb from "idb";
 
 class TeamsDb {
     dbPromise() {
-        return idb.open("soccer-database", 1, function (upgradeDb) {
+        return idb.open("soccer-teams", 1, function (upgradeDb) {
             if (!upgradeDb.objectStoreNames.contains("teams")) {
                 const teams = upgradeDb.createObjectStore("teams", { keyPath: "id" });
                 teams.createIndex("id", "id", { unique: true });

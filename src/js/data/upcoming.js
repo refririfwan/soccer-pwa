@@ -38,12 +38,12 @@ class Upcoming extends API {
     showUpcoming(data) {
         let matches = "";
         let teamElement = document.getElementById("upcoming");
-
+        
         data.matches.forEach(function (match) {
             if (match.status === "SCHEDULED") {
-                let utcDate = match.utcDate
-                let date = utcDate.slice(0,10)
-                let time = utcDate.slice(11,16)
+                const utcDate = match.utcDate
+                const date = utcDate.slice(0,10)
+                const time = utcDate.slice(11,16)
                 matches += `
                     <tr>
                         <td class="center">${match.matchday}</td>
@@ -52,7 +52,7 @@ class Upcoming extends API {
                         <td class="center">${match.status}</td>
                         <td class="center">${date}</td>
                         <td class="center">${time}</td>
-                        <td class="center"><a class="waves-effect green btn-small">Add</a></td>
+                        <td class="center"><a href="./detailMatch.html?matchId=${match.id}" class="waves-effect green btn-small">Detail</a></td>
                     </tr>
                 `;
             }
@@ -70,7 +70,7 @@ class Upcoming extends API {
                         <th class="center">Status</th>
                         <th class="center">Date</th>
                         <th class="center">Time</th>
-                        <th class="center">Reminder</th>
+                        <th class="center">Detail</th>
                     </tr>
                 </thead>
                 <tbody id="upcoming">

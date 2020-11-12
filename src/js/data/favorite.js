@@ -1,4 +1,4 @@
-import TeamsDb from "../database/teamsdb"
+import TeamsDb from "../database/teamsdb";
 
 class Favorite {
     
@@ -9,7 +9,7 @@ class Favorite {
 
     async removeFavorite(teamid){
         const teamsdb = new TeamsDb();
-        await teamsdb.dbDeleteTeam(teamid)
+        await teamsdb.dbDeleteTeam(teamid);
     }
 
     async getAllTeams(){
@@ -23,8 +23,8 @@ class Favorite {
             document.querySelector('.load2').classList.remove('indeterminate');
             document.querySelector('#favorite').style.display = "block";
             document.querySelector('.loader').style.display = "none";
-        }, 1234)
-        this.showTeams(teams)
+        }, 1234);
+        this.showTeams(teams);
     }
 
     showTeams(data){
@@ -32,28 +32,29 @@ class Favorite {
         let teamElement =  document.getElementById("favorite");
         data.forEach(function(team){
             teams += `    
-            <div class="col s12 m6">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" alt="${team.shortName}">
-                    </div>
-                    <div class="card-content">
-                        <ul class="collection">
-                            <li class="collection-item">Name    : ${team.name}</li>
-                            <li class="collection-item">Since   : ${team.founded}</li>
-                            <li class="collection-item">Venue   : ${team.venue}</li>
-                            <li class="collection-item">Colors  : ${team.clubColors}</li>
-                            <li class="collection-item">Address : ${team.address}</li>
-                            <li class="collection-item">Email   : ${team.email}</li>
-                            <li class="collection-item">Phone   : ${team.phone}</li>
-                            <li class="collection-item">Website : <a href="${team.website}"  target="_blank">${team.shortName}</a></li>
-                        </ul>
-                        <a class="waves-effect orange btn-small right btnDelete" data-teamid="${team.id}">Remove</a>
-                    </div>
-                    <div class="card-action">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="${team.crestUrl.replace(/^http:\/\//i, 'https://')}" alt="${team.shortName}">
+                        </div>
+                        <div class="card-content">
+                            <ul class="collection">
+                                <li class="collection-item">Name    : ${team.name}</li>
+                                <li class="collection-item">Since   : ${team.founded}</li>
+                                <li class="collection-item">Venue   : ${team.venue}</li>
+                                <li class="collection-item">Colors  : ${team.clubColors}</li>
+                                <li class="collection-item">Address : ${team.address}</li>
+                                <li class="collection-item">Email   : ${team.email}</li>
+                                <li class="collection-item">Phone   : ${team.phone}</li>
+                                <li class="collection-item">Website : <a href="${team.website}"  target="_blank">${team.shortName}</a></li>
+                            </ul>
+                            <a class="waves-effect orange btn-small right btnDelete" data-teamid="${team.id}">Remove</a>
+                        </div>
+                        <div class="card-action">
+                        </div>
                     </div>
                 </div>
-            </div>`;
+            `;
         });
         if(teams){
             teamElement.innerHTML = teams;

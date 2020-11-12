@@ -10,8 +10,8 @@ class Team {
     }
 
     async getTeamDetail(teamId){
-        const team = await this.getTeam(teamId)
-        this.showTeam(team)
+        const team = await this.getTeam(teamId);
+        this.showTeam(team);
     }
 
     showTeam(team){
