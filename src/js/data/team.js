@@ -1,12 +1,24 @@
 class Team {
     getTeam(teamId){
-        return fetch(`https://api.football-data.org/v2/teams/${teamId}`, {
+        const BASE_URL = "https://api.football-data.org/";
+        const ENDPOINT_TEAM = `${BASE_URL}v2/teams/${teamId}`;
+        return fetch(ENDPOINT_TEAM, {
             headers: {
                 'X-Auth-Token': '16d85bf702974259b17e4dff4faeade4'
             }
         })
         .then(response => response.json())
         .then(team => team)
+        .catch(() => {
+            if ("caches" in window) {
+                return caches.match(this.ENDPOINT_TEAM).then(function (response) {
+                    if (response) {
+                        return response.json()
+                        .then(team => team);
+                    }
+                })
+            }
+        });
     }
 
     async getTeamDetail(teamId){

@@ -21,7 +21,7 @@ class TeamsDb {
             alert("Team favorite berhasil disimpan");
             location.replace("./#favorite")
         }).catch(function () {
-            alert("Team favorite gagal disimpan.");
+            alert("Team favorite tidak berhasil disimpan");
             location.replace("./detailTeam.html?teamId=" + data.id)
         })
     }

@@ -1,7 +1,7 @@
 class API {
     constructor() {
         this.API_KEY = "16d85bf702974259b17e4dff4faeade4";
-        this.BASE_URL = "https://api.football-data.org/v2/";
+        this.BASE_URL = "https://api.football-data.org/";
         this.LEAGUE = "BL1";
         this.fetchAPI = url => {
             return fetch(url, {

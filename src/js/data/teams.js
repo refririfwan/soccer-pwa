@@ -3,7 +3,7 @@ import API from "./api"
 class Teams extends API {
     constructor() {
         super()
-        this.ENDPOINT_STANDINGS = `${this.BASE_URL}competitions/${this.LEAGUE}/teams`;
+        this.ENDPOINT_STANDINGS = `${this.BASE_URL}v2/competitions/${this.LEAGUE}/teams`;
     }
 
     getAllTeams() {
@@ -11,8 +11,8 @@ class Teams extends API {
             caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        // console.log("Data Teams: " + data);
-                        this.showTeams(data)
+                        const teams = new Teams();
+                        teams.showTeams(data);
                     })
                 }
             })

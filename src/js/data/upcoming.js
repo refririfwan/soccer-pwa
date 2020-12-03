@@ -3,7 +3,7 @@ import API from "./api"
 class Upcoming extends API {
     constructor() {
         super()
-        this.ENDPOINT_STANDINGS = `${this.BASE_URL}competitions/${this.LEAGUE}/matches`;
+        this.ENDPOINT_STANDINGS = `${this.BASE_URL}v2/competitions/${this.LEAGUE}/matches`;
     }
 
     getAllUpcoming() {
@@ -11,8 +11,8 @@ class Upcoming extends API {
             caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        console.log("Data Upcoming: " + data);
-                        this.showUpcoming(data)
+                        const upcoming = new Upcoming();
+                        upcoming.showUpcoming(data);
                     })
                 }
             })

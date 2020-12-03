@@ -21,8 +21,7 @@ class MatchesDb {
             alert("Match reminder berhasil disimpan");
             location.replace("./#reminder")
         }).catch(function () {
-            console.log("Match reminder gagal disimpan.");
-            alert("Match reminder gagal disimpan.");
+            alert("Match reminder tidak berhasil disimpan");
             location.replace("./detailMatch.html?matchId=" + data.id)
         })
     }

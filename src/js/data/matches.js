@@ -3,16 +3,16 @@ import API from "./api"
 class Matches extends API {
     constructor() {
         super()
-        this.ENDPOINT_STANDINGS = `${this.BASE_URL}competitions/${this.LEAGUE}/matches`;
+        this.ENDPOINT_STANDINGS = `${this.BASE_URL}v2/competitions/${this.LEAGUE}/matches`;
     }
 
     getAllMatches() {
         if ("caches" in window) {
-            caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
+            caches.match(this.ENDPOINT_STANDINGS).then((response) => {
                 if (response) {
                     response.json().then(function (data) {
-                        // console.log("Data Matches: " + data);
-                        this.showMatches(data)
+                        const matches = new Matches();
+                        matches.showMatches(data);
                     })
                 }
             })
@@ -27,7 +27,7 @@ class Matches extends API {
                     document.querySelector('.load2').classList.remove('indeterminate');
                     document.querySelector('#matches').style.display = "block";
                     document.querySelector('.loader').style.display = "none";
-                }, 1234)
+                }, 1234);
                 this.showMatches(data)
             })
             .catch(error => {

@@ -1,12 +1,24 @@
 class Match {
     getMatch(matchId){
-        return fetch(`https://api.football-data.org/v2/matches/${matchId}`,{
+        const BASE_URL = "https://api.football-data.org/";
+        const ENDPOINT_MATCH = `${BASE_URL}v2/matches/${matchId}`;
+        return fetch(ENDPOINT_MATCH,{
             headers: {
                 'X-Auth-Token': '16d85bf702974259b17e4dff4faeade4'
             }
         })
         .then(response => response.json())
         .then(match => match)
+        .catch( () => {
+            if ("caches" in window) {
+                return caches.match(this.ENDPOINT_MATCH).then(function (response) {
+                    if (response) {
+                        return response.json()
+                        .then(match => match);
+                    }
+                })
+            }
+        });
     }
 
     async getMatchDetail(matchId){

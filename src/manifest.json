@@ -1,0 +1,16 @@
+{
+    "name": "soccer-pwa",
+    "short_name": "soccer",
+    "description": "Aplikasi berbasis Progressive Web Application (PWA) yang berisi sebagai media informasi liga sepakbola dari Bundesliga Jerman.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#00897B",
+    "theme_color": "#00897B",
+    "icons": [
+        {
+            "src": "./img/bundesliga-logo.png",
+            "sizes": "640x640",
+            "type": "image/png"
+        }
+    ]
+}

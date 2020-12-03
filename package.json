@@ -1,6 +1,6 @@
 {
   "name": "soccer-pwa",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Aplikasi berbasis Progressive Web Application (PWA) yang berisi sebagai media informasi sepakbola dari beberapa liga yang terkenal di eropa.",
   "scripts": {
     "prod": "webpack --config webpack.prod.js",
@@ -22,6 +22,7 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
-    "idb": "^2.1.3"
+    "idb": "^2.1.3",
+    "regenerator-runtime": "^0.13.7"
   }
 }

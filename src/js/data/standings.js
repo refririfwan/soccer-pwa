@@ -3,7 +3,7 @@ import API from "./api"
 class Standings extends API {
     constructor() {
         super()
-        this.ENDPOINT_STANDINGS = `${this.BASE_URL}competitions/${this.LEAGUE}/standings`;
+        this.ENDPOINT_STANDINGS = `${this.BASE_URL}v2/competitions/${this.LEAGUE}/standings`;
     }
 
     getAllStandings() {
@@ -11,8 +11,8 @@ class Standings extends API {
             caches.match(this.ENDPOINT_STANDINGS).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        // console.log("Data Standings: " + data);
-                        this.showStandings(data)
+                        const standings = new Standings();
+                        standings.showStandings(data);
                     })
                 }
             })
@@ -29,7 +29,7 @@ class Standings extends API {
                     document.querySelector('#standings').style.display = "block";
                     document.querySelector('.loader').style.display = "none";
                 },1234)
-                this.showStandings(data)
+                this.showStandings(data);
             })
             .catch(error => {
                 console.log(error)
