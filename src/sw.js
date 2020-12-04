@@ -1,85 +1,90 @@
-const CACHE_NAME = 'soccer-pwa-v1';
-var urlsToCache = [
-    "/",
-    "/index.html",
-    "/detailMatch.html",
-    "/detailTeam.html",
-    "/index.js",
-    "/sw.js",
-    "/manifest.json",
-    "/pages/navbar.html",
-    "/pages/standings.html",
-    "/pages/matches.html",
-    "/pages/teams.html",
-    "/pages/upcoming.html",
-    "/pages/favorite.html",
-    "/pages/reminder.html",
-    "/img/favicon.ico",
-    "/img/arrow-119-32.ico",
-    "/img/bundesliga-logo.png"
-];
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
-self.addEventListener("install", function (event) {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
-            return cache.addAll(urlsToCache);
-        })
-    );
-});
+if (workbox)
+    console.log(`Workbox berhasil dimuat`);
+else
+    console.log(`Workbox gagal dimuat`);
 
-self.addEventListener("fetch", function (event) {
-    const BASE_URL = "https://api.football-data.org/";
-    if (event.request.url.indexOf(BASE_URL) > -1) {
-        event.respondWith(
-            caches.open(CACHE_NAME).then(function (cache) {
-                return fetch(event.request).then(function (response) {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request, { ignoreSearch: true }).then(function (response) {
-                return response || fetch(event.request);
-            })
-        )
-    }
-});
+workbox.precaching.precacheAndRoute([
+    { url: '/index.html', revision: '1' },
+    { url: '/detailMatch.html', revision: '1' },
+    { url: '/detailTeam.html', revision: '1' },
+    { url: '/index.js', revision: '1' },
+    { url: '/sw.js', revision: '1' },
+    { url: '/manifest.json', revision: '1' },
+    { url: '/img/favicon.ico', revision: '1' },
+    { url: '/img/arrow-119-32.ico', revision: '1' },
+    { url: '/img/bundesliga-logo.png', revision: '1' },
+    { url: '/pages/navbar.html', revision: '1' },
+    { url: '/pages/standings.html', revision: '1' },
+    { url: '/pages/matches.html', revision: '1' },
+    { url: '/pages/teams.html', revision: '1' },
+    { url: '/pages/upcoming.html', revision: '1' },
+    { url: '/pages/favorite.html', revision: '1' },
+    { url: '/pages/reminder.html', revision: '1' }
+], { ignoreUrlParametersMatching: [/.*/], });
 
-self.addEventListener("activate", function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    if (cacheName != CACHE_NAME) {
-                        console.log("ServiceWorker: cache " + cacheName + " dihapus");
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
+workbox.routing.registerRoute(
+    new RegExp('/pages/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'pages'
+    })
+);
 
-self.addEventListener("fetch", function (event) {
-    event.respondWith(
-        caches
-            .match(event.request, { cacheName: CACHE_NAME })
-            .then(function (response) {
-                if (response) {
-                    console.log("ServiceWorker: Gunakan aset dari cache: ", response.url);
-                    return response;
-                }
+workbox.routing.registerRoute(
+    new RegExp('/index.html'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'index'
+    })
+);
 
-                console.log(
-                    "ServiceWorker: Memuat aset dari server: ",
-                    event.request.url
-                );
-                return fetch(event.request);
-            })
-    );
-});
+workbox.routing.registerRoute(
+    new RegExp('/detailMatch.html'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'detailMatch'
+    })
+);
+
+workbox.routing.registerRoute(
+    new RegExp('/detailTeam.html'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'detailTeam'
+    })
+);
+
+workbox.routing.registerRoute(
+    /\.(?:png|ico|svg)$/,
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'img',
+        plugin: [
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+            }),
+        ]
+    })
+);
+
+workbox.routing.registerRoute(
+    new RegExp('https://api.football-data.org/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'football-data-api',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200],
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+            }),
+        ]
+    })
+);
+
+workbox.routing.registerRoute(
+    new RegExp('https://crests.football-data.org/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'api-images',
+    })
+);
 
 self.addEventListener('push', function (event) {
     var body;
