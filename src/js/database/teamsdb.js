@@ -15,7 +15,7 @@ class TeamsDb {
             const tx = db.transaction('teams', 'readwrite');
             const store = tx.objectStore('teams');
             const team = data;
-            store.add(team)
+            store.put(team);
             return tx.complete;
         }).then(function () {
             alert("Team favorite berhasil disimpan");

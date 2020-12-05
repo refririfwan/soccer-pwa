@@ -15,7 +15,7 @@ class MatchesDb {
             const tx = db.transaction('matches', 'readwrite');
             const store = tx.objectStore('matches');
             const match = data;
-            store.add(match);
+            store.put(match);
             return tx.complete;
         }).then(function () {
             alert("Match reminder berhasil disimpan");

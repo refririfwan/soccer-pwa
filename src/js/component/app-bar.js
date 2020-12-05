@@ -5,7 +5,7 @@ class AppBar extends HTMLElement {
 
     render(){
         this.innerHTML = `
-            <nav role="navigation" class="green darken-3">
+            <nav role="navigation" class="red accent-4">
                 <div class="nav-wrapper container">
                     <a href="#" class="right brand-logo" id="logo-container">Bundesliga</a>
                     <a href="#" class="sidenav-trigger" data-target="nav-mobile">&#9776;</a>

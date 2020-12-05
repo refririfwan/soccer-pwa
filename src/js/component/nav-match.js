@@ -5,7 +5,7 @@ class NavMatch extends HTMLElement {
 
     render(){
         this.innerHTML = `
-            <nav role="navigation" class="green darken-3">
+            <nav role="navigation" class="red accent-4">
                 <div class="nav-wrapper container">
                     <a class="right brand-logo" id="logo-container">Detail Match</a>
                     <a href="./#upcoming" class="sidenav-trigger responsive-img" style="margin-top: 2%;" data-target="nav-mobile"><img src="img/arrow-119-32.ico" alt="arrow-back"></a>

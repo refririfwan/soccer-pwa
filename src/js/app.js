@@ -14,7 +14,7 @@ import Favorite from "./data/favorite";
 import Match from "./data/match";
 import Reminder from "./data/reminder";
 
-const app = function () {
+const app = () => {
     const standings = new Standings();
     const teams = new Teams();
     const matches = new Matches();
@@ -114,7 +114,7 @@ const app = function () {
                 document.querySelectorAll(".sidenav-appbar a, .topnav-appbar a").forEach(function (elm) {
                     elm.addEventListener("click", function (event) {
                         // Tutup sidenav
-                        var sidenav = document.querySelector(".sidenav-appbar");
+                        let sidenav = document.querySelector(".sidenav-appbar");
                         M.Sidenav.getInstance(sidenav).close();
 
                         // Muat konten halaman yang dipanggil
@@ -202,7 +202,7 @@ const app = function () {
                 }
             }
         };
-        xhttp.open("GET", "pages/" + page + ".html", true);
+        xhttp.open("GET", `pages/${page}.html`, true);
         xhttp.send();
     }
 }

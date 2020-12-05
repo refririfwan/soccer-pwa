@@ -4,13 +4,19 @@
     "description": "Aplikasi berbasis Progressive Web Application (PWA) yang berisi sebagai media informasi liga sepakbola dari Bundesliga Jerman.",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#00897B",
-    "theme_color": "#00897B",
-    "icons": [
+    "background_color": "#ff0000",
+    "theme_color": "#ff0000",
+    "icons": [{
+            "src": "./img/bundesliga-logo-192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
         {
-            "src": "./img/bundesliga-logo.png",
-            "sizes": "640x640",
-            "type": "image/png"
+            "src": "./img/bundesliga-logo-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
         }
     ]
 }
